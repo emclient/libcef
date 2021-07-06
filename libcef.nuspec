@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <!-- package -->
+    <id>MailClient.libcef</id>
+    <title>MailClient.libcef</title>
+    <version>3.3683.1953</version>
+    <description>73.0.0-em-3683.1953+g4e31721+chromium-73.0.3683.75</description>
+    <summary></summary>
+    <!--<releaseNotes></releaseNotes>-->
+
+    <!-- legal -->
+    <licenseUrl>https://github.com/chromiumembedded/cef/blob/master/LICENSE.txt</licenseUrl>
+    <authors>Marshall A. Greenblatt, Google Inc.</authors>
+    <!--<owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>-->
+    <copyright>Copyright (c) 2008-2020 Marshall A. Greenblatt. Portions Copyright (c) 2006-2020 Google Inc. All rights reserved.</copyright>
+
+    <repository type="git" url="https://github.com/emclient/libcef.git" />
+  </metadata>
+  <files>
+    <file src="runtimes/win-x86/native/libcef/v8_context_snapshot.bin" />
+    <file src="runtimes/win-x86/native/libcef/cef_extensions.pak" />
+    <file src="runtimes/win-x86/native/libcef/locales/en-US.pak" />
+    <file src="runtimes/win-x86/native/libcef/locales/ja.pak" />
+    <file src="runtimes/win-x86/native/libcef/cef.pak" />
+    <file src="runtimes/win-x86/native/libcef/dbghelp.dll" />
+    <file src="runtimes/win-x86/native/libcef/chrome_elf.dll" />
+    <file src="runtimes/win-x86/native/libcef/icudtl.dat" />
+    <file src="runtimes/win-x86/native/libcef/cef_100_percent.pak" />
+    <file src="runtimes/win-x86/native/libcef/d3dcompiler_47.dll" />
+    <file src="runtimes/win-x86/native/libcef/cef_200_percent.pak" />
+    <file src="runtimes/win-x86/native/libcef/snapshot_blob.bin" />
+    <file src="runtimes/win-x86/native/libcef/libEGL.dll" />
+    <file src="runtimes/win-x86/native/libcef/libcef.dll" />
+    <file src="runtimes/win-x86/native/libcef/natives_blob.bin" />
+    <file src="runtimes/win-x86/native/libcef/libGLESv2.dll" />
+    <file src="runtimes/win-x86/native/libcef/devtools_resources.pak" />
+  </files>
+</package>
