@@ -10,31 +10,28 @@
     <!--<releaseNotes></releaseNotes>-->
 
     <!-- legal -->
-    <licenseUrl>https://github.com/chromiumembedded/cef/blob/master/LICENSE.txt</licenseUrl>
+    <license type="expression">BSD-3-Clause</license>
     <authors>Marshall A. Greenblatt, Google Inc.</authors>
     <!--<owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>-->
     <copyright>Copyright (c) 2008-2020 Marshall A. Greenblatt. Portions Copyright (c) 2006-2020 Google Inc. All rights reserved.</copyright>
 
     <repository type="git" url="https://github.com/emclient/libcef.git" />
+
+    <contentFiles>
+      <!--
+      Architecture-specific files folder hierarchy lost (native subfolders) 
+      https://github.com/NuGet/Home/issues/7698#issuecomment-455368655
+      We have to copy via contentFiles
+      -->
+      <files include="any\any\**" buildAction="Content" copyToOutput="true" />
+    </contentFiles>
   </metadata>
   <files>
-    <file src="runtimes/win-x86/native/libcef/v8_context_snapshot.bin" />
-    <file src="runtimes/win-x86/native/libcef/cef_extensions.pak" />
-    <file src="runtimes/win-x86/native/libcef/locales/en-US.pak" />
-    <file src="runtimes/win-x86/native/libcef/locales/ja.pak" />
-    <file src="runtimes/win-x86/native/libcef/cef.pak" />
-    <file src="runtimes/win-x86/native/libcef/dbghelp.dll" />
-    <file src="runtimes/win-x86/native/libcef/chrome_elf.dll" />
-    <file src="runtimes/win-x86/native/libcef/icudtl.dat" />
-    <file src="runtimes/win-x86/native/libcef/cef_100_percent.pak" />
-    <file src="runtimes/win-x86/native/libcef/d3dcompiler_47.dll" />
-    <file src="runtimes/win-x86/native/libcef/cef_200_percent.pak" />
-    <file src="runtimes/win-x86/native/libcef/snapshot_blob.bin" />
-    <file src="runtimes/win-x86/native/libcef/libEGL.dll" />
-    <file src="runtimes/win-x86/native/libcef/libcef.dll" />
-    <file src="runtimes/win-x86/native/libcef/natives_blob.bin" />
-    <file src="runtimes/win-x86/native/libcef/libGLESv2.dll" />
-    <file src="runtimes/win-x86/native/libcef/devtools_resources.pak" />
+    <file src="runtimes/win-x86/native/libcef/*.bin" target="contentFiles/any/any/libcef" />
+    <file src="runtimes/win-x86/native/libcef/*.dat" target="contentFiles/any/any/libcef" />
+    <file src="runtimes/win-x86/native/libcef/*.dll" target="contentFiles/any/any/libcef" />
+    <file src="runtimes/win-x86/native/libcef/*.pak" target="contentFiles/any/any/libcef" />
+    <file src="runtimes/win-x86/native/libcef/locales/*.pak" target="contentFiles/any/any/libcef/locales" />
   </files>
 </package>
