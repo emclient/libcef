@@ -128,8 +128,6 @@ function PDFViewer(browserApi) {
   this.delayedScriptingMessages_ = [];
   this.loaded_ = new PromiseResolver();
 
-  this.isPrintPreview_ = location.origin === 'chrome://print';
-  this.isPrintPreviewLoadingFinished_ = false;
   this.isUserInitiatedEvent_ = true;
 
   /** @private {boolean} */
@@ -146,6 +144,11 @@ function PDFViewer(browserApi) {
   this.paramsParser_ = new OpenPDFParamsParser(
       message => this.pluginController_.postMessage(message));
   var toolbarParam = this.paramsParser_.getUiUrlParams(this.originalUrl_).toolbar;
+  const allParams = this.paramsParser_.parseUrlParams_(this.originalUrl_);
+
+  this.isPrintPreview_ = location.origin === 'chrome://print' || "print-preview" in allParams;
+  this.isPrintPreviewLoadingFinished_ = false;
+
   const toolbarEnabled =
       toolbarParam &&
       !this.isPrintPreview_;
@@ -214,7 +217,10 @@ function PDFViewer(browserApi) {
   }
   this.plugin_.setAttribute('headers', headers);
 
-  const backgroundColor = PDFViewer.DARK_BACKGROUND_COLOR;
+  let backgroundColor = PDFViewer.DARK_BACKGROUND_COLOR;
+  if ("background-color" in allParams) {
+      backgroundColor = allParams["background-color"];
+  }
   this.plugin_.setAttribute('background-color', backgroundColor);
   this.plugin_.setAttribute('top-toolbar-height', topToolbarHeight);
   this.plugin_.setAttribute('javascript', this.javascript_);
@@ -922,6 +928,23 @@ PDFViewer.prototype = {
 	  case 'goToPage':
 	  	this.viewport_.goToPage(message.data.page);
 		break;
+      case 'insertStyle':
+        var styleEl;
+        if (message.data.id) {
+            styleEl = document.querySelector("style[id='" + message.data.id + "']");
+            if (!styleEl) {
+                styleEl = document.createElement("style");
+                styleEl.id = message.data.id;
+                document.head.appendChild(styleEl);
+            }
+        }
+        else {
+            styleEl = document.createElement("style");
+            document.head.appendChild(styleEl);
+        }
+        console.log(message.data.style);
+        styleEl.textContent = message.data.style;
+        break;
     }
   },
 
@@ -998,21 +1021,21 @@ PDFViewer.prototype = {
    * @private
    */
   sendScriptingMessage_: function(message) {
-    if (this.parentWindow_ && this.parentOrigin_) {
-      let targetOrigin;
-      // Only send data back to the embedder if it is from the same origin,
-      // unless we're sending it to ourselves (which could happen in the case
-      // of tests). We also allow documentLoaded messages through as this won't
-      // leak important information.
-      if (this.parentOrigin_ == window.location.origin) {
-        targetOrigin = this.parentOrigin_;
-      } else if (message.type == 'documentLoaded' || this.isPrintPreview_) {
-        targetOrigin = '*';
-      } else {
-        targetOrigin = this.originalUrl_;
+      if (this.parentWindow_ && this.parentOrigin_) {
+          let targetOrigin;
+          // Only send data back to the embedder if it is from the same origin,
+          // unless we're sending it to ourselves (which could happen in the case
+          // of tests). We also allow documentLoaded messages through as this won't
+          // leak important information.
+          if (this.parentOrigin_ == window.location.origin) {
+              targetOrigin = this.parentOrigin_;
+          } else if (message.type == 'documentLoaded' || this.isPrintPreview_) {
+              targetOrigin = '*';
+          } else {
+              targetOrigin = this.originalUrl_;
+          }
+          this.parentWindow_.postMessage(message, targetOrigin);
       }
-      this.parentWindow_.postMessage(message, targetOrigin);
-    }
   },
 
   /**
