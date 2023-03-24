@@ -1,0 +1,318 @@
+<!doctype html>
+<html i18n-values="dir:textdirection;lang:language">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="chrome://resources/css/text_defaults.css">
+<link rel="stylesheet" href="chrome://resources/css/apps/common.css"></link>
+<link rel="stylesheet" href="chrome://resources/css/apps/topbutton_bar.css"></link>
+<style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #fbfbfb;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+  padding: 0;
+  width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.title-bar {
+  -webkit-align-items: center;
+  -webkit-app-region: drag;
+  background-color: #fff;
+  box-shadow: 0 1px #d0d0d0;
+  color: rgb(80, 80, 82);
+  display: -webkit-flex;
+  font-size: 15px;
+  min-height: 48px;
+}
+
+.title-bar #page-title {
+  -webkit-flex: 1 1 auto;
+  margin-inline-start: 20px;
+}
+
+.title-bar .button-bar {
+  -webkit-flex: 0 1 auto;
+}
+
+.content {
+  color: #646464;
+  flex-grow: 1;
+  font-size: 12px;
+  margin: 20px;
+}
+
+.content #description-text {
+  border-color: #c8c8c8;
+  box-sizing: border-box;
+  height: 120px;
+  line-height: 18px;
+  padding: 10px;
+  resize: none;
+  width: 100%;
+}
+
+.content #additional-info-label {
+  margin-inline-start: 10px;
+}
+
+.content .text-field-container {
+  -webkit-align-items: center;
+  display: -webkit-flex;
+  height: 29px;
+  margin-top: 10px;
+  padding-inline-start: 10px;
+}
+
+.content .text-field-container > label {
+  -webkit-flex: 0 1 auto;
+  width: 100px;
+}
+
+.content .text-field-container > select {
+  border: 1px solid #c8c8c8;
+  color: #585858;
+  flex: 1 1 auto;
+  height: 100%;
+  padding-inline-start: 5px;
+}
+
+.content .text-field-container > input[type=text] {
+  -webkit-flex: 1 1 auto;
+  border: 1px solid;
+  border-color: #c8c8c8;
+  color: #585858;
+  height: 100%;
+  padding-inline-start: 5px;
+}
+
+.content .text-field-container > input[type=checkbox] {
+  margin-right: 9px;
+}
+
+.content .checkbox-field-container {
+  -webkit-align-items: center;
+  display: -webkit-flex;
+  height: 29px;
+}
+
+#screenshot-container {
+  margin-top: 10px;
+}
+
+.content #screenshot-image {
+  display: block;
+  height: 60px;
+  margin-inline-end: 25px;
+  margin-top: 40px;
+  transition: all 250ms ease;
+}
+
+.content #screenshot-image:hover {
+  height: 125px;
+  margin-inline-end: 0;
+  margin-top: 80px;
+  z-index: 1;
+}
+
+.content #screenshot-image.wide-screen {
+  height: auto;
+  width: 100px;
+}
+
+.content #screenshot-image.wide-screen:hover {
+  height: auto;
+  width: 200px;
+}
+
+.content #screenshot-label {
+  flex: auto;
+}
+
+.content #privacy-note {
+  color: #969696;
+  font-size: 12px;
+  line-height: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.content .buttons-pane {
+  bottom: 20px;
+  display: -webkit-flex;
+  justify-content: flex-end;
+  left: 20px;
+  position: absolute;
+  right: 20px;
+}
+
+.content .top-buttons {
+  position: absolute;
+}
+
+.content .remove-file-button {
+  background-color: transparent;
+  background-image: -webkit-image-set(
+      url(chrome://resources/images/apps/button_butter_bar_close.png) 1x,
+      url(chrome://resources/images/2x/apps/button_butter_bar_close.png) 2x);
+  background-position: 50% 80%;
+  background-repeat: no-repeat;
+  border: none;
+  height: 16px;
+  margin-inline-start: 5px;
+  pointer-events: auto;
+  width: 16px;
+}
+
+.content .remove-file-button:hover {
+  background-image: -webkit-image-set(
+      url(chrome://resources/images/apps/button_butter_bar_close_hover.png) 1x,
+      url(chrome://resources/images/2x/apps/button_butter_bar_close_hover.png) 2x);
+}
+
+.content .remove-file-button:active {
+  background-image: -webkit-image-set(
+      url(chrome://resources/images/apps/button_butter_bar_close_pressed.png) 1x,
+      url(chrome://resources/images/2x/apps/button_butter_bar_close_pressed.png) 2x);
+}
+
+.content #attach-file-note {
+  margin-bottom: 10px;
+  margin-inline-start: 112px;
+  margin-top: 10px;
+}
+
+.content .attach-file-notification {
+  color: rgb(204, 0, 0);
+  font-weight: bold;
+}
+
+button.white-button {
+  color: #000;
+  margin-inline-end: 10px;
+}
+
+button.blue-button {
+  color: #fff;
+  text-shadow: 1px sharp drop shadow rgb(45, 106, 218);
+}
+
+.srt-image {
+  display: block;
+  height: 50px;
+  margin-bottom: 20px;
+  margin-inline-end: auto;
+  margin-inline-start: 40px;
+  margin-top: 120px;
+}
+
+.srt-body {
+  font-size: 14px;
+  line-height: 24px;
+  margin: 0 40px;
+}
+</style>
+
+<script src="chrome://resources/js/load_time_data.js"></script>
+<script src="chrome://resources/js/i18n_template_no_process.js"></script>
+<script src="chrome://resources/js/util.js"></script>
+<script src="../js/feedback_util.js"></script>
+<script src="../js/take_screenshot.js"></script>
+<script src="../js/topbar_handlers.js"></script>
+<script src="../js/feedback.js"></script>
+</head>
+<body>
+  <div id="title-bar" class="title-bar">
+    <span id="page-title" i18n-content="page-title"></span>
+    <span class="topbutton-bar">
+      <button class="minimize-button" id="minimize-button" tabindex="-1"
+              i18n-values="aria-label:minimize-btn-label">
+      </button>
+      <button class="close-button" id="close-button" tabindex="-1"
+              i18n-values="aria-label:close-btn-label">
+      </button>
+    </span>
+  </div>
+  <div id="srt-prompt" class="content">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OHB4IiB2aWV3Ym94PSIwIDAgNDggNDgiIGZpbGw9Im5vbmUiPg0KICA8cGF0aCBzdHJva2U9IiM1ZjYzNjgiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgZD0iTTEuNSA4LjUgdjM0IGg0NSB2LTI4IG0tMy0zIGgtMTAgdi0zIG0tMy0zIGgtMTAgbTE1IDYgaC0xOCB2LTMgbS0zLTMgaC0xMCIvPg0KICA8cGF0aCBzdHJva2U9IiM1ZjYzNjgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgZD0iTTEyIDM1IGgyIG0yLTIgaDEyIG0yIDIgaDMgbTIgMiBoMyBNMTEgMjEgbDAgMCBtMCA0IGgwIG00IDAgaDAgbTAtNCBoMCBtLTIgMiBoMCBNMzMgMjEgbDAgMCBtMCA0IGgwIG00IDAgaDAgbTAtNCBoMCBtLTIgMiBoMCIvPg0KPC9zdmc+DQo=" class="srt-image">
+    <p i18n-content="srtPromptBody" class="srt-body"></p>
+    <div class="buttons-pane top-buttons">
+      <button id="srt-decline-button" class="white-button"
+          i18n-content="srtPromptDeclineButton">
+      </button>
+      <button id="srt-accept-button" class="blue-button"
+          i18n-content="srtPromptAcceptButton">
+      </button>
+    </div>
+  </div>
+  <div id="content-pane" class="content">
+    <textarea id="description-text" aria-labelledby="page-title"></textarea>
+    <div>
+      <p id="additional-info-label" i18n-content="additionalInfo"><p>
+    </div>
+    <div id="page-url" class="text-field-container">
+      <label id="page-url-label" i18n-content="page-url"></label>
+      <input id="page-url-text" aria-labelledby="page-url-label" type="text">
+    </div>
+    <!-- User e-mail -->
+    <div id="user-email" class="text-field-container" hidden>
+      <label id="user-email-label" i18n-content="user-email"></label>
+      <select id="user-email-drop-down" aria-labelledby="user-email-label">
+        <option id="anonymous-user-option" value="anonymous_user"
+                i18n-content="anonymous-user"></option>
+      </select>
+    </div>
+    <!-- Attach a file -->
+    <div id="attach-file-container" class="text-field-container">
+      <label id="attach-file-label" i18n-content="attach-file-label"></label>
+      <input id="attach-file" type="file" aria-labelledby="attach-file-label">
+      <div id="custom-file-container" hidden>
+        <label id="attached-filename-text"></label>
+        <button id="remove-attached-file" class="remove-file-button"></button>
+      </div>
+      <div id="attach-error" class="attach-file-notification"
+          i18n-content="attach-file-to-big" hidden></div>
+    </div>
+    <div id="attach-file-note" i18n-content="attach-file-note"></div>
+    <!-- Screenshot -->
+    <div id="screenshot-container" class="checkbox-field-container">
+      <input id="screenshot-checkbox" type="checkbox" aria-labelledby="screenshot-label">
+      <label id="screenshot-label" i18n-content="screenshot"></label>
+      <img id="screenshot-image">
+    </div>
+    <!-- System Information -->
+    <div class="checkbox-field-container">
+      <input id="sys-info-checkbox" type="checkbox" aria-labelledby="sys-info-label" checked>
+      <label id="sys-info-label" i18n-values=".innerHTML:sys-info"></label>
+    </div>
+
+    <!-- Privacy note -->
+    <div id="privacy-note" i18n-values=".innerHTML:privacy-note"></div>
+    <!-- Buttons -->
+    <div class="buttons-pane">
+      <button id="cancel-button" type="submit"
+          class="white-button" i18n-content="cancel">
+      </button>
+      <button id="send-report-button" type="submit"
+          class="blue-button" i18n-content="send-report">
+      </button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html i18n-values="dir:textdirection;lang:language">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title i18n-content="sysinfoPageTitle"></title>
+    <link rel="stylesheet" href="chrome://resources/css/text_defaults.css">
+    <link rel="stylesheet" href="chrome://resources/css/spinner.css">
+    <style>/* Copyright 2013 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#anchor {
+  display: none;
+}
+
+body {
+  font-size: 84%;
+  margin: 0;
+  min-width: 45em;
+  padding: 0.75em;
+}
+
+.global-button {
+  margin: 1px 3px 0 3px;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  color: rgb(74, 142, 230);
+  font-size: 110%;
+  font-weight: bold;
+  padding: 0;
+}
+
+h2 {
+  color: rgb(58, 117, 189);
+  display: inline-block;
+  font-size: 110%;
+  font-weight: normal;
+  padding-inline-end: 1em;
+  padding-inline-start: 0;
+}
+
+#header {
+  background: rgb(82, 150, 222);
+  background-size: 100%;
+  border: 1px solid rgb(58, 117, 189);
+  border-radius: 6px;
+  color: white;
+  margin-bottom: 0.75em;
+  overflow: hidden;
+  padding: 0.5em 0;
+  position: relative;
+  text-shadow: 0 0 2px black;
+}
+
+html[dir='rtl'] #header {
+  padding: 0.6em 0 0.75em 1em;
+}
+
+#header h1 {
+  color: white;
+  display: inline;
+}
+
+div#header h1::before {
+  /* grit doesn't flatten -webkit-mask, so define the properties separately
+  * for now. */
+  -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0iIzAwMDAwMCI+DQogICAgPHBhdGggZD0iTTAgMGg0OHY0OEgweiIgZmlsbD0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0zOC44NiAyNS45NWMuMDgtLjY0LjE0LTEuMjkuMTQtMS45NXMtLjA2LTEuMzEtLjE0LTEuOTVsNC4yMy0zLjMxYy4zOC0uMy40OS0uODQuMjQtMS4yOGwtNC02LjkzYy0uMjUtLjQzLS43Ny0uNjEtMS4yMi0uNDNsLTQuOTggMi4wMWMtMS4wMy0uNzktMi4xNi0xLjQ2LTMuMzgtMS45N0wyOSA0Ljg0Yy0uMDktLjQ3LS41LS44NC0xLS44NGgtOGMtLjUgMC0uOTEuMzctLjk5Ljg0bC0uNzUgNS4zYy0xLjIyLjUxLTIuMzUgMS4xNy0zLjM4IDEuOTdMOS45IDEwLjFjLS40NS0uMTctLjk3IDAtMS4yMi40M2wtNCA2LjkzYy0uMjUuNDMtLjE0Ljk3LjI0IDEuMjhsNC4yMiAzLjMxQzkuMDYgMjIuNjkgOSAyMy4zNCA5IDI0cy4wNiAxLjMxLjE0IDEuOTVsLTQuMjIgMy4zMWMtLjM4LjMtLjQ5Ljg0LS4yNCAxLjI4bDQgNi45M2MuMjUuNDMuNzcuNjEgMS4yMi40M2w0Ljk4LTIuMDFjMS4wMy43OSAyLjE2IDEuNDYgMy4zOCAxLjk3bC43NSA1LjNjLjA4LjQ3LjQ5Ljg0Ljk5Ljg0aDhjLjUgMCAuOTEtLjM3Ljk5LS44NGwuNzUtNS4zYzEuMjItLjUxIDIuMzUtMS4xNyAzLjM4LTEuOTdsNC45OCAyLjAxYy40NS4xNy45NyAwIDEuMjItLjQzbDQtNi45M2MuMjUtLjQzLjE0LS45Ny0uMjQtMS4yOGwtNC4yMi0zLjMxek0yNCAzMWMtMy44NyAwLTctMy4xMy03LTdzMy4xMy03IDctNyA3IDMuMTMgNyA3LTMuMTMgNy03IDd6Ii8+DQo8L3N2Zz4NCg==);
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 24px;
+  background-color: white;
+  content: '';
+  display: inline-block;
+  height: 20px;
+  vertical-align: middle;
+  width: 37px;
+}
+
+#header p {
+  color: white;
+  display: inline;
+  font-size: 84%;
+  font-style: italic;
+  padding-inline-start: 0.4em;
+}
+
+.list {
+  border-collapse: collapse;
+  font-size: 84%;
+  line-height: 200%;
+  width: 100%;
+}
+
+.list:not(.filtered) tr:nth-child(odd) td {
+  background: rgb(239, 243, 255);
+}
+
+.list td {
+  font-family: 'Courier New', monospace;
+  line-height: 1.4em;
+  padding: 0 0.5em;
+  padding-top: 0.35em;
+  vertical-align: top;
+}
+
+.list tr td:nth-last-child(1),
+.list tr th:nth-last-child(1) {
+  padding-inline-end: 1em;
+}
+
+.list:not(.filtered) .tab .name {
+  padding-inline-start: 1.5em;
+}
+
+.list .name {
+  width: 20%;
+}
+
+.list .button-cell {
+  width: 7%;
+}
+
+.list .name div {
+  height: 1.6em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button-hidden {
+  display: none;
+}
+
+.number-expanded,
+.number-collapsed  {
+  text-align: left;
+  text-overflow: ellipsis;
+  width: 80%;
+}
+
+html[dir='rtl'] .number-expanded,
+html[dir='rtl'] .number-collapsed  {
+  text-align: right;
+}
+
+tr > *:nth-child(1),
+tr > *:nth-child(2) {
+  border-inline-end: 1px solid rgb(181, 198, 222);
+}
+
+.name {
+  background-position: 5em center;
+  background-repeat: no-repeat;
+}
+
+.stat-value {
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
+html[dir='rtl'] #details .name {
+  background-position-left: auto;
+  background-position-right: 5em;
+}
+
+.number-collapsed .stat-value {
+  display: none;
+}
+
+.number-expanded .stat-value {
+  display: auto;
+}
+</style>
+    <style>/* Copyright 2016 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+html,
+body {
+  overflow: visible;
+  user-select: auto;
+}
+
+#detailsTable {
+  margin-top: .5em;
+}
+
+#status {
+  color: rgb(66, 133, 244);
+  display: inline-block;
+  margin: .5em .5em;
+}</style>
+    <script src="chrome://resources/js/util.js"></script>
+    <script src="chrome://resources/js/i18n_template_no_process.js"></script>
+    <script src="../js/sys_info.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="title" i18n-content="sysinfoPageTitle"></h1>
+      <p id="description" i18n-content="sysinfoPageDescription"></p>
+    </div>
+    <div id="content">
+      <h2 id="tableTitle" i18n-content="sysinfoPageTableTitle"></h2>
+      <div id="anchor"></div>
+      <button id="expandAllBtn" class="global-button"
+              i18n-content="sysinfoPageExpandAllBtn"></button>
+      <button id="collapseAllBtn" class="global-button"
+              i18n-content="sysinfoPageCollapseAllBtn"></button>
+      <div id="spinner-container">
+        <div class="inline-spinner"></div>
+        <p id="status" i18n-content="sysinfoPageStatusLoading"></p>
+      </div>
+      <table class="list" id="detailsTable"></table>
+    </div>
+  </body>
+</html>
