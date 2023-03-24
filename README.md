@@ -14,4 +14,4 @@ pak.exe -u ..\runtimes\win-x86\native\libcef\cef_extensions.pak ..\cef_extension
 pak.exe -p ..\cef_extensions\pak_index.ini ..\runtimes\win-x86\native\libcef\cef_extensions.pak
 ```
 
-make sure tu pak your changes before publish
+make sure to pak your changes before publish
