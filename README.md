@@ -1,5 +1,9 @@
 # libcef
 
+## Deprecation
+
+The repository is superseded by [CefBuild](https://github.com/emclient/CefBuild/) and [CefRuntime](https://github.com/emclient/CefRuntime/) which is currently used for automatic building of CEF binaries and their respective NuGet packages.
+
 ## Tools
 
 ### pak.exe [chrome-pak-customizer](https://github.com/myfreeer/chrome-pak-customizer)
